@@ -61,7 +61,7 @@
             transform: rotateY(180deg);
         }
 
-        .description {
+        .description, #cardName {
             margin-top: 30px;
             font-size: 1.1em;
             color: white;
@@ -329,109 +329,4 @@
                 image: "https://github.com/hahamanman/taroproject/blob/main/19_the%20moon.jpg?raw=true",
                 descriptions: {
                     past: "혼란과 불확실한 길을 걸으며 감정이 큰 역할을 했습니다.",
-                    present: "직관을 따르고 모호함 속에서 답을 찾는 시기입니다.",
-                    future: "모호함 속에서 빛나는 답을 찾게 될 겁니다. 주변사람들이 함께 길을 밝혀줄 테니까요!"
-                }
-            },
-            {
-                name: "The Sun (태양)",
-                image: "https://github.com/hahamanman/taroproject/blob/main/20_the%20sun.jpg?raw=true",
-                descriptions: {
-                    past: "성공과 만족감을 누리며 인생의 밝은 시기를 경험했습니다.",
-                    present: "명확한 비전을 가지고 있으면 긍정적인 결과가 뒤따를 것입니다.",
-                    future: "밝고 긍정적인 에너지가 넘칩니다! 내년에도 햇살같은 기운이 찾아올 거에요."
-                }
-            },
-            {
-                name: "Judgment (심판)",
-                image: "https://github.com/hahamanman/taroproject/blob/main/21_judgment.jpg?raw=true",
-                descriptions: {
-                    past: "과거의 행동과 선택에 대해 반성하며 새로운 결단을 내렸습니다.",
-                    present: "새로운 시작을 위해 과거의 경험을 통해 지혜롭게 판단해야 합니다.",
-                    future: "평가는 가볍게, 성장에는 진지하게! 내년에도 함께 더 나은 미래를 설계해보세요."
-                }
-            },
-            {
-                name: "The World (세계)",
-                image: "https://github.com/hahamanman/taroproject/blob/main/22_the%20world.jpg?raw=true",
-                descriptions: {
-                    past: "모든 것이 결실을 맺으며 완성을 이루었던 시기가 있었습니다.",
-                    present: "획일화된 목표에 도달하는 시점이며 상호작용을 통해 더 크게 성장 가능합니다.",
-                    future: "모든 것이 연결됩니다! 내년엔 당신의 수업이 글로벌 스탠다드가 될 겁니다."
-                }
-            }
-    ];
-
-    const cardElements = document.querySelectorAll('.card');
-    const cardInnerElements = document.querySelectorAll('.card-inner');
-    const cardImages = [
-        document.getElementById("cardImage1"),
-        document.getElementById("cardImage2"),
-        document.getElementById("cardImage3")
-    ];
-    const cardName = document.getElementById("cardName");
-    const cardDescription = document.getElementById("cardDescription");
-    const resetButton = document.getElementById("resetButton");
-    const kakaoShareButton = document.getElementById("kakaoShareButton");
-    const twitterShareButton = document.getElementById("twitterShareButton");
-    let flipCount = 0;
-
-    cardElements.forEach((card, index) => {
-        card.addEventListener("click", () => {
-            if (flipCount >= 3 || cardInnerElements[index].classList.contains("flipped")) return;
-
-            const randomIndex = Math.floor(Math.random() * cards.length);
-            const selectedCard = cards[randomIndex];
-
-            cardImages[index].src = selectedCard.image;
-            const position = ['past', 'present', 'future'];
-            const positionText = ['과거', '현재', '미래'];
-
-            const descriptionClass = position[flipCount] === 'future' ? 'future-text' : '';
-
-            cardName.innerHTML += `<br/><strong class="gold-text">${positionText[flipCount]}:</strong> <span class="arcana-name">${selectedCard.name}</span>`;
-            cardDescription.innerHTML += `<span class="${descriptionClass}">${selectedCard.descriptions[position[flipCount]]}</span><br/>`;
-
-            cardInnerElements[index].classList.add("flipped");
-            flipCount++;
-
-            if (flipCount === 3) {
-                document.getElementById("buttonContainer").classList.remove("hidden");
-            }
-        });
-    });
-
-    resetButton.addEventListener("click", () => {
-        flipCount = 0;
-        cardInnerElements.forEach(el => el.classList.remove("flipped"));
-        cardImages.forEach(img => img.src = "");
-        cardName.textContent = "";
-        cardDescription.textContent = "";
-        document.getElementById("buttonContainer").classList.add("hidden");
-    });
-
-    kakaoShareButton.addEventListener('click', function () {
-        Kakao.Link.sendDefault({
-            objectType: 'feed',
-            content: {
-                title: '2025년 타로카드 신년운세',
-                description: cardDescription.innerText,
-                imageUrl: cardImages[0].src,
-                link: {
-                    mobileWebUrl: window.location.href,
-                    webUrl: window.location.href
-                }
-            }
-        });
-    });
-
-    twitterShareButton.addEventListener('click', function () {
-        const text = encodeURIComponent("2025년 타로카드 신년운세! " + cardDescription.innerText);
-        const url = encodeURIComponent(window.location.href);
-        const twitterUrl = `https://twitter.com/intent/tweet?text=${text}&url=${url}`;
-        window.open(twitterUrl, '_blank');
-    });
-
-</script>
-</body>
-</html>
+                    present: "직관을 따르고 모호함 속에서 답을 찾는 시
