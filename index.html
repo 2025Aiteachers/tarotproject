@@ -30,8 +30,8 @@
         }
 
         .card {
-            width: 120px; /* 1.1배 확대 */
-            height: 180px; /* 1.1배 확대 */
+            width: 120px;
+            height: 180px;
             perspective: 1000px;
         }
 
@@ -375,13 +375,15 @@
     const kakaoShareButton = document.getElementById("kakaoShareButton");
     const twitterShareButton = document.getElementById("twitterShareButton");
     let flipCount = 0;
-
+    let selectedCards = []; // 선택된 카드들을 추적
+    
     cardElements.forEach((card, index) => {
         card.addEventListener("click", () => {
             if (flipCount >= 3 || cardInnerElements[index].classList.contains("flipped")) return;
 
             const randomIndex = Math.floor(Math.random() * cards.length);
             const selectedCard = cards[randomIndex];
+            selectedCards.push(randomIndex); // 선택된 카드의 인덱스 저장
 
             cardImages[index].src = selectedCard.image;
             const position = ['past', 'present', 'future'];
@@ -397,12 +399,41 @@
 
             if (flipCount === 3) {
                 document.getElementById("buttonContainer").classList.remove("hidden");
+                buildShareUrl();
             }
         });
     });
 
+    function buildShareUrl() {
+        const baseUrl = window.location.origin + window.location.pathname;
+        const shareUrl = `${baseUrl}?cards=${selectedCards.join(',')}`;
+        document.getElementById("shareUrl").value = shareUrl; // URL을
+    }
+
+    window.addEventListener('load', () => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const cardsParam = urlParams.get('cards');
+
+        if (cardsParam) {
+            const cardIndices = cardsParam.split(',').map(Number);
+            cardIndices.forEach((index, flipCount) => {
+                if (index != null && index >= 0 && index < cards.length && flipCount < 3) {
+                    const cardInner = cardInnerElements[flipCount];
+                    const cardImage = cardImages[flipCount];
+                    cardImage.src = cards[index].image;
+                    const descriptionClass = flipCount === 2 ? 'future-text' : '';
+                    cardName.innerHTML += `<br/><strong class="gold-text">${['과거', '현재', '미래'][flipCount]}:</strong> <span class="arcana-name">${cards[index].name}</span>`;
+                    cardDescription.innerHTML += `<span class="${descriptionClass}">${cards[index].descriptions[['past', 'present', 'future'][flipCount]]}</span><br/>`;
+                    cardInner.classList.add("flipped");
+                }
+            });
+            document.getElementById("buttonContainer").classList.remove("hidden");
+        }
+    });
+
     resetButton.addEventListener("click", () => {
         flipCount = 0;
+        selectedCards = []; // 초기화 시 선택된 카드도 초기화
         cardInnerElements.forEach(el => el.classList.remove("flipped"));
         cardImages.forEach(img => img.src = "");
         cardName.textContent = "";
@@ -414,12 +445,12 @@
         Kakao.Link.sendDefault({
             objectType: 'feed',
             content: {
-                title: '2025년 타로카드 신년운세',
-                description: cardDescription.innerText,
+                title: '2025년 타로카드 신년운세 결과를 확인해보세요!',
+                description: '터치해서 당신의 타로카드 결과를 확인해보세요!',
                 imageUrl: cardImages[0].src,
                 link: {
-                    mobileWebUrl: window.location.href,
-                    webUrl: window.location.href
+                    mobileWebUrl: document.getElementById("shareUrl").value,
+                    webUrl: document.getElementById("shareUrl").value
                 }
             }
         });
@@ -427,11 +458,12 @@
 
     twitterShareButton.addEventListener('click', function () {
         const text = encodeURIComponent("2025년 타로카드 신년운세! " + cardDescription.innerText);
-        const url = encodeURIComponent(window.location.href);
+        const url = encodeURIComponent(document.getElementById("shareUrl").value);
         const twitterUrl = `https://twitter.com/intent/tweet?text=${text}&url=${url}`;
         window.open(twitterUrl, '_blank');
     });
 
 </script>
+<input id="shareUrl" type="text" style="visibility:hidden;" />
 </body>
 </html>
