@@ -27,8 +27,13 @@
             gap: 10px;
             background-color: #2c2c2c;
             padding: 20px;
-            margin: 20px auto;
-            max-width: 500px;
+            margin: 20px auto; /* 중앙 정렬 위해 추가 */
+            max-width: 500px; /* 최대 넓이 설정 */
+        }
+
+        .card-container {
+            display: flex;
+            justify-content: center;
         }
 
         .card {
@@ -137,33 +142,33 @@
 
 <div class="card-container">
     <div class="cards">
-        <div class="card" id="pastCard">
+        <div class="card">
             <div class="card-inner">
                 <div class="card-front">
                     <img src="https://github.com/hahamanman/taroproject/blob/main/00_backdesign.jpg?raw=true" alt="Card Front" style="width: 100%; height: 100%;">
                 </div>
                 <div class="card-back">
-                    <img id="cardImagePast" src="" alt="Card Back" style="width: 100%; height: 100%;">
+                    <img id="cardImage1" src="" alt="Card Back" style="width: 100%; height: 100%;">
                 </div>
             </div>
         </div>
-        <div class="card" id="presentCard">
+        <div class="card">
             <div class="card-inner">
                 <div class="card-front">
                     <img src="https://github.com/hahamanman/taroproject/blob/main/00_backdesign.jpg?raw=true" alt="Card Front" style="width: 100%; height: 100%;">
                 </div>
                 <div class="card-back">
-                    <img id="cardImagePresent" src="" alt="Card Back" style="width: 100%; height: 100%;">
+                    <img id="cardImage2" src="" alt="Card Back" style="width: 100%; height: 100%;">
                 </div>
             </div>
         </div>
-        <div class="card" id="futureCard">
+        <div class="card">
             <div class="card-inner">
                 <div class="card-front">
                     <img src="https://github.com/hahamanman/taroproject/blob/main/00_backdesign.jpg?raw=true" alt="Card Front" style="width: 100%; height: 100%;">
                 </div>
                 <div class="card-back">
-                    <img id="cardImageFuture" src="" alt="Card Back" style="width: 100%; height: 100%;">
+                    <img id="cardImage3" src="" alt="Card Back" style="width: 100%; height: 100%;">
                 </div>
             </div>
         </div>
@@ -183,246 +188,273 @@
     Kakao.init('7a8d42b217b82c4d4b314e8dfd73af08');
 
     const cards = [
-        {
-            name: "The Fool (광대)",
-            image: "https://github.com/hahamanman/taroproject/blob/main/01_the%20fool.jpg?raw=true",
-            descriptions: {
-                past: "새로운 모험을 향해 첫걸음을 내딛었습니다. 그 과정에서 얻은 경험이 당신을 더욱 성장하게 했습니다.",
-                present: "당신은 이제 새로운 기회를 마주하고 있습니다. 결단력이 필요한 시점입니다.",
-                future: "새로운 시작을 두려워하지 마세요! 내년에는 실수조차도 AI가 모두 다 고쳐줄 거에요."
+        { 
+                name: "The Fool (광대)", 
+                image: "https://github.com/hahamanman/taroproject/blob/main/01_the%20fool.jpg?raw=true", 
+                descriptions: {
+                    past: "새로운 모험을 향해 첫걸음을 내딛었습니다. 그 과정에서 얻은 경험이 당신을 더욱 성장하게 했습니다.",
+                    present: "당신은 이제 새로운 기회를 마주하고 있습니다. 결단력이 필요한 시점입니다.",
+                    future: "새로운 시작을 두려워하지 마세요! 내년에는 실수조차도 AI가 모두 다 고쳐줄 거에요."
+                }
+            },
+            {
+                name: "The Magician (마법사)",
+                image: "https://github.com/hahamanman/taroproject/blob/main/02_the%20magician.jpg?raw=true",
+                descriptions: {
+                    past: "당신은 과거에 자신만의 능력을 발견하고, 이를 통해 많은 것을 성취해오셨습니다.",
+                    present: "지금은 자신의 지식과 자원을 활용해야 할 시기입니다.",
+                    future: "2025년, 당신은 에듀테크의 마법사! 모든 수업 자료가 마법처럼 준비될 거에요."
+                }
+            },
+            {
+                name: "The High Priestess (여교황)",
+                image: "https://github.com/hahamanman/taroproject/blob/main/03_the%20high%20priestess.jpg?raw=true",
+                descriptions: {
+                    past: "숨겨진 지식과 비밀을 깨닫고 이를 통해 많은 성장을 경험했습니다.",
+                    present: "직관력을 따라 귀중한 결정을 내려야 할 때입니다.",
+                    future: "내년에는 감춰진 비밀들을 알게 될 겁니다. 선생님이 내년에 또 과학정보부장을 할 수 밖에 없는 이유 같은거요."
+                }
+            },
+            {
+                name: "The Empress (여황제)",
+                image: "https://github.com/hahamanman/taroproject/blob/main/03_the%20empress.jpg?raw=true",
+                descriptions: {
+                    past: "풍요와 번영의 나날을 경험하며 많은 지원을 받았습니다.",
+                    present: "당신의 창의력과 따뜻함이 다른 사람들에게 영향을 미치고 있습니다.",
+                    future: "창의력과 열정으로 수업이 꽃 피울 겁니다. 학생들도 깜짝 놀랄 아이디어가 넘칠 거예요!"
+                }
+            },
+            {
+                name: "The Emperor (황제)",
+                image: "https://github.com/hahamanman/taroproject/blob/main/04_the%20emperor.jpg?raw=true",
+                descriptions: {
+                    past: "질서와 권위를 중시하며 안정적인 기반을 마련했습니다.",
+                    present: "명확한 계획과 규칙을 세워 나아가야 할 때입니다.",
+                    future: "내년엔 권위가 빛날 거예요. 새로운 학생들도 새로운 업무들도 선생님이 하고자 하는대로 잘 풀릴거에요."
+                }
+            },
+            {
+                name: "The Lovers (연인)",
+                image: "https://github.com/hahamanman/taroproject/blob/main/06_the%20lovers.jpg?raw=true",
+                descriptions: {
+                    past: "중요한 관계와 결정들이 당신의 삶에 큰 영향을 미쳤습니다.",
+                    present: "조화와 균형을 이루려면 마음속 깊은 곳에서 결정을 내려야 합니다.",
+                    future: "2025년엔 협력이 관건! 동료들과의 팀워크와 네트워크가 선생님을 더 성장하게 만들 겁니다."
+                }
+            },
+            {
+                name: "The Chariot (전차)",
+                image: "https://github.com/hahamanman/taroproject/blob/main/07_the%20chariot.jpg?raw=true",
+                descriptions: {
+                    past: "강력한 의지와 결단력으로 많은 도전을 극복했습니다.",
+                    present: "지금은 목표를 향해 전진할 때입니다. 조심성과 결단력 모두가 필요합니다.",
+                    future: "결단력 있게 앞으로 나아가세요! AI와 함께라면 전차보다 더 빠르게 목표에 도달할 거예요."
+                }
+            },
+            {
+                name: "Strength (힘)",
+                image: "https://github.com/hahamanman/taroproject/blob/main/08_strength.jpg?raw=true",
+                descriptions: {
+                    past: "내면의 힘과 용기로 많은 역경을 이겨냈습니다.",
+                    present: "자연스럽고 온화하게 강함을 발휘하세요.",
+                    future: "학생들의 인내심 테스트? 문제없어요. 내년엔 더 단단한 내면의 힘으로 훌륭한 선생님으로 성장할거에요."
+                }
+            },
+            {
+                name: "The Hermit (은둔자)",
+                image: "https://github.com/hahamanman/taroproject/blob/main/10_the%20hermit.jpg?raw=true",
+                descriptions: {
+                    past: "주변의 혼란 속에서도 혼자만의 시간을 통해 깊은 통찰을 얻었습니다.",
+                    present: "자신을 돌아보고 스스로의 내면에 집중해야 할 때입니다.",
+                    future: "혼자만의 시간을 만끽하세요! 내년엔 AI가 당신의 조용한 연구 파트너가 되어줄 겁니다!"
+                }
+            },
+            {
+                name: "Wheel of Fortune (운명의 수레바퀴)",
+                image: "https://github.com/hahamanman/taroproject/blob/main/11_wheel%20of%20fortune.jpg?raw=true",
+                descriptions: {
+                    past: "인생의 변동성을 경험하며 중요한 교훈을 얻었습니다.",
+                    present: "현재의 변화에 적응하고 준비하세요.",
+                    future: "행운의 바퀴가 회전합니다! 내년엔 원하는 보직과 원하는 학년을 얻게 될거에요!"
+                }
+            },
+            {
+                name: "Justice (정의)",
+                image: "https://github.com/hahamanman/taroproject/blob/main/24_justice.jpg?raw=true",
+                descriptions: {
+                    past: "진실성과 공정함을 중시하며 관련된 상황에 영향을 미쳤습니다.",
+                    present: "공정하게 판단하고 상황을 균형 있게 바라보야 하는 시기입니다.",
+                    future: "공정함이 빛나는 한 해가 될 겁니다! 내년엔 우리 선생님은 늘 공정해요 라는 말을 듣게 될거에요."
+                }
+            },
+            {
+                name: "The Hanged Man (매달린 남자)",
+                image: "https://github.com/hahamanman/taroproject/blob/main/25_the%20hanged%20man.jpg?raw=true",
+                descriptions: {
+                    past: "다양한 관점에서 상황을 바라보며 인내심을 배웠습니다.",
+                    present: "포기의 시간이 아닌, 새로운 시각에서 바라봐야 할 때입니다.",
+                    future: "새로운 시각이 열립니다! 뭔가 어려운 일이 생길 때는 참신한 해결책이 다가올 거에요."
+                }
+            },
+            {
+                name: "Death (죽음)",
+                image: "https://github.com/hahamanman/taroproject/blob/main/18_the%20star.jpg?raw=true",
+                descriptions: {
+                    past: "큰 변화와 전환점을 겪으며 새로운 시작으로 이어졌습니다.",
+                    present: "무언가를 마무리하고 새로운 일을 시작하도록 마음의 준비를 해야 합니다.",
+                    future: "오래된 습관은 떠나보내세요! AI가 당신에게 새로운 시작을 선물할 준비가 되어 있습니다."
+                }
+            },
+            {
+                name: "Temperance (절제)",
+                image: "https://github.com/hahamanman/taroproject/blob/main/15_temperance.jpg?raw=true",
+                descriptions: {
+                    past: "균형과 절제를 유지하며 중용의 미덕을 배웠습니다.",
+                    present: "현재의 상황을 조화롭게 조정하고 통합해야 할 시기입니다.",
+                    future: "균형과 조화를 이루는 한 해가 될 겁니다! AI가 당신의 업무와 휴식을 완벽하게 조율해 줄 테니, 올해는 더 여유로운 시간을 기대하세요."
+                }
+            },
+            {
+                name: "The Devil (악마)",
+                image: "https://github.com/hahamanman/taroproject/blob/main/16_the%20devil.jpg?raw=true",
+                descriptions: {
+                    past: "욕망과 유혹으로 인해 어려운 시기를 겪었지만 이를 통해 현실을 직시하게 되었습니다.",
+                    present: "자신을 속박에서 풀어주고 자유를 찾기 위한 기회입니다.",
+                    future: "내년엔 유혹이 강할 겁니다. 하지만 걱정 마세요, 우리가 당신의 현명한 선택에 함께할 거예요!"
+                }
+            },
+            {
+                name: "The Tower (탑)",
+                image: "https://github.com/hahamanman/taroproject/blob/main/17_the%20tower.jpg?raw=true",
+                descriptions: {
+                    past: "기대하지 않았던 변화와 충격적인 경험을 통해 새로운 통찰을 얻었습니다.",
+                    present: "예상치 못한 상황에 대비하기 위해 준비를 해야 합니다.",
+                    future: "뜻밖의 변화가 찾아올 예정입니다! 하지만 동료들과 함께라면 새로운 길을 만들어갈 수 있을 거예요. 함께라서 든든하죠?"
+                }
+            },
+            {
+                name: "The Star (별)",
+                image: "https://github.com/hahamanman/taroproject/blob/main/18_the%20star.jpg?raw=true",
+                descriptions: {
+                    past: "희망과 꿈을 품으며 긍정적인 변화를 기대했습니다.",
+                    present: "현재는 마음을 열고 아이디어를 실현할 기회입니다.",
+                    future: "희망과 영감의 해가 될 겁니다. 당신의 가장 빛나는 아이디어가 현실이 될 거예요."
+                }
+            },
+            {
+                name: "The Moon (달)",
+                image: "https://github.com/hahamanman/taroproject/blob/main/19_the%20moon.jpg?raw=true",
+                descriptions: {
+                    past: "혼란과 불확실한 길을 걸으며 감정이 큰 역할을 했습니다.",
+                    present: "직관을 따르고 모호함 속에서 답을 찾는 시기입니다.",
+                    future: "모호함 속에서 빛나는 답을 찾게 될 겁니다. 주변사람들이 함께 길을 밝혀줄 테니까요!"
+                }
+            },
+            {
+                name: "The Sun (태양)",
+                image: "https://github.com/hahamanman/taroproject/blob/main/20_the%20sun.jpg?raw=true",
+                descriptions: {
+                    past: "성공과 만족감을 누리며 인생의 밝은 시기를 경험했습니다.",
+                    present: "명확한 비전을 가지고 있으면 긍정적인 결과가 뒤따를 것입니다.",
+                    future: "밝고 긍정적인 에너지가 넘칩니다! 내년에도 햇살같은 기운이 찾아올 거에요."
+                }
+            },
+            {
+                name: "Judgment (심판)",
+                image: "https://github.com/hahamanman/taroproject/blob/main/21_judgment.jpg?raw=true",
+                descriptions: {
+                    past: "과거의 행동과 선택에 대해 반성하며 새로운 결단을 내렸습니다.",
+                    present: "새로운 시작을 위해 과거의 경험을 통해 지혜롭게 판단해야 합니다.",
+                    future: "평가는 가볍게, 성장에는 진지하게! 내년에도 함께 더 나은 미래를 설계해보세요."
+                }
+            },
+            {
+                name: "The World (세계)",
+                image: "https://github.com/hahamanman/taroproject/blob/main/22_the%20world.jpg?raw=true",
+                descriptions: {
+                    past: "모든 것이 결실을 맺으며 완성을 이루었던 시기가 있었습니다.",
+                    present: "획일화된 목표에 도달하는 시점이며 상호작용을 통해 더 크게 성장 가능합니다.",
+                    future: "모든 것이 연결됩니다! 내년엔 당신의 수업이 글로벌 스탠다드가 될 겁니다."
+                }
             }
-        },
-        {
-            name: "The Magician (마법사)",
-            image: "https://github.com/hahamanman/taroproject/blob/main/02_the%20magician.jpg?raw=true",
-            descriptions: {
-                past: "당신은 과거에 자신만의 능력을 발견하고, 이를 통해 많은 것을 성취해오셨습니다.",
-                present: "지금은 자신의 지식과 자원을 활용해야 할 시기입니다.",
-                future: "2025년, 당신은 에듀테크의 마법사! 모든 수업 자료가 마법처럼 준비될 거에요."
-            }
-        },
-        {
-            name: "The High Priestess (여교황)",
-            image: "https://github.com/hahamanman/taroproject/blob/main/03_the%20high%20priestess.jpg?raw=true",
-            descriptions: {
-                past: "숨겨진 지식과 비밀을 깨닫고 이를 통해 많은 성장을 경험했습니다.",
-                present: "직관력을 따라 귀중한 결정을 내려야 할 때입니다.",
-                future: "내년에는 감춰진 비밀들을 알게 될 겁니다. 선생님이 내년에 또 과학정보부장을 할 수 밖에 없는 이유 같은거요."
-            }
-        },
-        {
-            name: "The Empress (여황제)",
-            image: "https://github.com/hahamanman/taroproject/blob/main/03_the%20empress.jpg?raw=true",
-            descriptions: {
-                past: "풍요와 번영의 나날을 경험하며 많은 지원을 받았습니다.",
-                present: "당신의 창의력과 따뜻함이 다른 사람들에게 영향을 미치고 있습니다.",
-                future: "창의력과 열정으로 수업이 꽃 피울 겁니다. 학생들도 깜짝 놀랄 아이디어가 넘칠 거예요!"
-            }
-        },
-        {
-            name: "The Emperor (황제)",
-            image: "https://github.com/hahamanman/taroproject/blob/main/04_the%20emperor.jpg?raw=true",
-            descriptions: {
-                past: "질서와 권위를 중시하며 안정적인 기반을 마련했습니다.",
-                present: "명확한 계획과 규칙을 세워 나아가야 할 때입니다.",
-                future: "내년엔 권위가 빛날 거예요. 새로운 학생들도 새로운 업무들도 선생님이 하고자 하는대로 잘 풀릴거에요."
-            }
-        },
-        {
-            name: "The Lovers (연인)",
-            image: "https://github.com/hahamanman/taroproject/blob/main/06_the%20lovers.jpg?raw=true",
-            descriptions: {
-                past: "중요한 관계와 결정들이 당신의 삶에 큰 영향을 미쳤습니다.",
-                present: "조화와 균형을 이루려면 마음속 깊은 곳에서 결정을 내려야 합니다.",
-                future: "2025년엔 협력이 관건! 동료들과의 팀워크와 네트워크가 선생님을 더 성장하게 만들 겁니다."
-            }
-        },
-        {
-            name: "The Chariot (전차)",
-            image: "https://github.com/hahamanman/taroproject/blob/main/07_the%20chariot.jpg?raw=true",
-            descriptions: {
-                past: "강력한 의지와 결단력으로 많은 도전을 극복했습니다.",
-                present: "지금은 목표를 향해 전진할 때입니다. 조심성과 결단력 모두가 필요합니다.",
-                future: "결단력 있게 앞으로 나아가세요! AI와 함께라면 전차보다 더 빠르게 목표에 도달할 거예요."
-            }
-        },
-        {
-            name: "Strength (힘)",
-            image: "https://github.com/hahamanman/taroproject/blob/main/08_strength.jpg?raw=true",
-            descriptions: {
-                past: "내면의 힘과 용기로 많은 역경을 이겨냈습니다.",
-                present: "자연스럽고 온화하게 강함을 발휘하세요.",
-                future: "학생들의 인내심 테스트? 문제없어요. 내년엔 더 단단한 내면의 힘으로 훌륭한 선생님으로 성장할거에요."
-            }
-        },
-        {
-            name: "The Hermit (은둔자)",
-            image: "https://github.com/hahamanman/taroproject/blob/main/10_the%20hermit.jpg?raw=true",
-            descriptions: {
-                past: "주변의 혼란 속에서도 혼자만의 시간을 통해 깊은 통찰을 얻었습니다.",
-                present: "자신을 돌아보고 스스로의 내면에 집중해야 할 때입니다.",
-                future: "혼자만의 시간을 만끽하세요! 내년엔 AI가 당신의 조용한 연구 파트너가 되어줄 겁니다!"
-            }
-        },
-        {
-            name: "Wheel of Fortune (운명의 수레바퀴)",
-            image: "https://github.com/hahamanman/taroproject/blob/main/11_wheel%20of%20fortune.jpg?raw=true",
-            descriptions: {
-                past: "인생의 변동성을 경험하며 중요한 교훈을 얻었습니다.",
-                present: "현재의 변화에 적응하고 준비하세요.",
-                future: "행운의 바퀴가 회전합니다! 내년엔 원하는 보직과 원하는 학년을 얻게 될거에요!"
-            }
-        },
-        {
-            name: "Justice (정의)",
-            image: "https://github.com/hahamanman/taroproject/blob/main/24_justice.jpg?raw=true",
-            descriptions: {
-                past: "진실성과 공정함을 중시하며 관련된 상황에 영향을 미쳤습니다.",
-                present: "공정하게 판단하고 상황을 균형 있게 바라보야 하는 시기입니다.",
-                future: "공정함이 빛나는 한 해가 될 겁니다! 내년엔 우리 선생님은 늘 공정해요 라는 말을 듣게 될거에요."
-            }
-        },
-        {
-            name: "The Hanged Man (매달린 남자)",
-            image: "https://github.com/hahamanman/taroproject/blob/main/25_the%20hanged%20man.jpg?raw=true",
-            descriptions: {
-                past: "다양한 관점에서 상황을 바라보며 인내심을 배웠습니다.",
-                present: "포기의 시간이 아닌, 새로운 시각에서 바라봐야 할 때입니다.",
-                future: "새로운 시각이 열립니다! 뭔가 어려운 일이 생길 때는 참신한 해결책이 다가올 거에요."
-            }
-        },
-        {
-            name: "Death (죽음)",
-            image: "https://github.com/hahamanman/taroproject/blob/main/18_the%20star.jpg?raw=true",
-            descriptions: {
-                past: "큰 변화와 전환점을 겪으며 새로운 시작으로 이어졌습니다.",
-                present: "무언가를 마무리하고 새로운 일을 시작하도록 마음의 준비를 해야 합니다.",
-                future: "오래된 습관은 떠나보내세요! AI가 당신에게 새로운 시작을 선물할 준비가 되어 있습니다."
-            }
-        },
-        {
-            name: "Temperance (절제)",
-            image: "https://github.com/hahamanman/taroproject/blob/main/15_temperance.jpg?raw=true",
-            descriptions: {
-                past: "균형과 절제를 유지하며 중용의 미덕을 배웠습니다.",
-                present: "현재의 상황을 조화롭게 조정하고 통합해야 할 시기입니다.",
-                future: "균형과 조화를 이루는 한 해가 될 겁니다! AI가 당신의 업무와 휴식을 완벽하게 조율해 줄 테니, 올해는 더 여유로운 시간을 기대하세요."
-            }
-        },
-        {
-            name: "The Devil (악마)",
-            image: "https://github.com/hahamanman/taroproject/blob/main/16_the%20devil.jpg?raw=true",
-            descriptions: {
-                past: "욕망과 유혹으로 인해 어려운 시기를 겪었지만 이를 통해 현실을 직시하게 되었습니다.",
-                present: "자신을 속박에서 풀어주고 자유를 찾기 위한 기회입니다.",
-                future: "내년엔 유혹이 강할 겁니다. 하지만 걱정 마세요, 우리가 당신의 현명한 선택에 함께할 거예요!"
-            }
-        },
-        {
-            name: "The Tower (탑)",
-            image: "https://github.com/hahamanman/taroproject/blob/main/17_the%20tower.jpg?raw=true",
-            descriptions: {
-                past: "기대하지 않았던 변화와 충격적인 경험을 통해 새로운 통찰을 얻었습니다.",
-                present: "예상치 못한 상황에 대비하기 위해 준비를 해야 합니다.",
-                future: "뜻밖의 변화가 찾아올 예정입니다! 하지만 동료들과 함께라면 새로운 길을 만들어갈 수 있을 거예요. 함께라서 든든하죠?"
-            }
-        },
-        {
-            name: "The Star (별)",
-            image: "https://github.com/hahamanman/taroproject/blob/main/18_the%20star.jpg?raw=true",
-            descriptions: {
-                past: "희망과 꿈을 품으며 긍정적인 변화를 기대했습니다.",
-                present: "현재는 마음을 열고 아이디어를 실현할 기회입니다.",
-                future: "희망과 영감의 해가 될 겁니다. 당신의 가장 빛나는 아이디어가 현실이 될 거예요."
-            }
-        },
-        {
-            name: "The Moon (달)",
-            image: "https://github.com/hahamanman/taroproject/blob/main/19_the%20moon.jpg?raw=true",
-            descriptions: {
-                past: "혼란과 불확실한 길을 걸으며 감정이 큰 역할을 했습니다.",
-                present: "직관을 따르고 모호함 속에서 답을 찾는 시기입니다.",
-                future: "모호함 속에서 빛나는 답을 찾게 될 겁니다. 주변사람들이 함께 길을 밝혀줄 테니까요!"
-            }
-        },
-        {
-            name: "The Sun (태양)",
-            image: "https://github.com/hahamanman/taroproject/blob/main/20_the%20sun.jpg?raw=true",
-            descriptions: {
-                past: "성공과 만족감을 누리며 인생의 밝은 시기를 경험했습니다.",
-                present: "명확한 비전을 가지고 있으면 긍정적인 결과가 뒤따를 것입니다.",
-                future: "밝고 긍정적인 에너지가 넘칩니다! 내년에도 햇살같은 기운이 찾아올 거에요."
-            }
-        },
-        {
-            name: "Judgment (심판)",
-            image: "https://github.com/hahamanman/taroproject/blob/main/21_judgment.jpg?raw=true",
-            descriptions: {
-                past: "과거의 행동과 선택에 대해 반성하며 새로운 결단을 내렸습니다.",
-                present: "새로운 시작을 위해 과거의 경험을 통해 지혜롭게 판단해야 합니다.",
-                future: "평가는 가볍게, 성장에는 진지하게! 내년에도 함께 더 나은 미래를 설계해보세요."
-            }
-        },
-        {
-            name: "The World (세계)",
-            image: "https://github.com/hahamanman/taroproject/blob/main/22_the%20world.jpg?raw=true",
-            descriptions: {
-                past: "모든 것이 결실을 맺으며 완성을 이루었던 시기가 있었습니다.",
-                present: "획일화된 목표에 도달하는 시점이며 상호작용을 통해 더 크게 성장 가능합니다.",
-                future: "모든 것이 연결됩니다! 내년엔 당신의 수업이 글로벌 스탠다드가 될 겁니다."
-            }
-        }
     ];
 
+    const cardElements = document.querySelectorAll('.card');
+    const cardInnerElements = document.querySelectorAll('.card-inner');
     const cardImages = [
-        document.getElementById("cardImagePast"),
-        document.getElementById("cardImagePresent"),
-        document.getElementById("cardImageFuture")
+        document.getElementById("cardImage1"),
+        document.getElementById("cardImage2"),
+        document.getElementById("cardImage3")
     ];
     const cardName = document.getElementById("cardName");
     const cardDescription = document.getElementById("cardDescription");
     const resetButton = document.getElementById("resetButton");
     const kakaoShareButton = document.getElementById("kakaoShareButton");
     const twitterShareButton = document.getElementById("twitterShareButton");
+    let flipCount = 0;
+    let selectedCards = []; // 선택된 카드들을 추적
+    
+    cardElements.forEach((card, index) => {
+        card.addEventListener("click", () => {
+            if (flipCount >= 3 || cardInnerElements[index].classList.contains("flipped")) return;
 
-    function getRandomCard() {
-        const randomIndex = Math.floor(Math.random() * cards.length);
-        return cards[randomIndex];
-    }
-
-    function drawCards() {
-        const positions = ['past', 'present', 'future'];
-        const positionText = ['과거', '현재', '미래'];
-
-        cardName.innerHTML = '';
-        cardDescription.innerHTML = '';
-
-        positions.forEach((position, index) => {
-            const selectedCard = getRandomCard();
+            const randomIndex = Math.floor(Math.random() * cards.length);
+            const selectedCard = cards[randomIndex];
+            selectedCards.push(randomIndex); // 선택된 카드의 인덱스 저장
 
             cardImages[index].src = selectedCard.image;
-            const descriptionClass = position === 'future' ? 'future-text' : '';
+            const position = ['past', 'present', 'future'];
+            const positionText = ['과거', '현재', '미래'];
 
-            cardName.innerHTML += `<br/><strong class="gold-text">${positionText[index]}:</strong> <span class="arcana-name">${selectedCard.name}</span>`;
-            cardDescription.innerHTML += `<span class="${descriptionClass}">${selectedCard.descriptions[position]}</span><br/>`;
+            const descriptionClass = position[flipCount] === 'future' ? 'future-text' : '';
 
-            document.querySelector(`#${position}Card .card-inner`).classList.add("flipped");
-        });
+            cardName.innerHTML += `<br/><strong class="gold-text">${positionText[flipCount]}:</strong> <span class="arcana-name">${selectedCard.name}</span>`;
+            cardDescription.innerHTML += `<span class="${descriptionClass}">${selectedCard.descriptions[position[flipCount]]}</span><br/>`;
 
-        document.getElementById("buttonContainer").classList.remove("hidden");
-    }
+            cardInnerElements[index].classList.add("flipped");
+            flipCount++;
 
-    window.addEventListener('load', () => {
-        document.querySelectorAll('.card').forEach(card => {
-            card.addEventListener("click", drawCards);
+            if (flipCount === 3) {
+                document.getElementById("buttonContainer").classList.remove("hidden");
+                buildShareUrl();
+            }
         });
     });
 
+    function buildShareUrl() {
+        const baseUrl = window.location.origin + window.location.pathname;
+        const shareUrl = `${baseUrl}?cards=${selectedCards.join(',')}`;
+        document.getElementById("shareUrl").value = shareUrl; // URL을
+    }
+
+    window.addEventListener('load', () => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const cardsParam = urlParams.get('cards');
+
+        if (cardsParam) {
+            const cardIndices = cardsParam.split(',').map(Number);
+            cardIndices.forEach((index, flipCount) => {
+                if (index != null && index >= 0 && index < cards.length && flipCount < 3) {
+                    const cardInner = cardInnerElements[flipCount];
+                    const cardImage = cardImages[flipCount];
+                    cardImage.src = cards[index].image;
+                    const descriptionClass = flipCount === 2 ? 'future-text' : '';
+                    cardName.innerHTML += `<br/><strong class="gold-text">${['과거', '현재', '미래'][flipCount]}:</strong> <span class="arcana-name">${cards[index].name}</span>`;
+                    cardDescription.innerHTML += `<span class="${descriptionClass}">${cards[index].descriptions[['past', 'present', 'future'][flipCount]]}</span><br/>`;
+                    cardInner.classList.add("flipped");
+                }
+            });
+            document.getElementById("buttonContainer").classList.remove("hidden");
+        }
+    });
+
     resetButton.addEventListener("click", () => {
+        flipCount = 0;
+        selectedCards = []; // 초기화 시 선택된 카드도 초기화
+        cardInnerElements.forEach(el => el.classList.remove("flipped"));
         cardImages.forEach(img => img.src = "");
         cardName.textContent = "";
         cardDescription.textContent = "";
-        document.querySelectorAll('.card-inner').forEach(el => el.classList.remove("flipped"));
         document.getElementById("buttonContainer").classList.add("hidden");
     });
 
@@ -434,8 +466,8 @@
                 description: '터치해서 당신의 타로카드 결과를 확인해보세요!',
                 imageUrl: cardImages[0].src,
                 link: {
-                    mobileWebUrl: window.location.href,
-                    webUrl: window.location.href
+                    mobileWebUrl: document.getElementById("shareUrl").value,
+                    webUrl: document.getElementById("shareUrl").value
                 }
             }
         });
@@ -443,7 +475,7 @@
 
     twitterShareButton.addEventListener('click', function () {
         const text = encodeURIComponent("2025년 타로카드 신년운세! " + cardDescription.innerText);
-        const url = encodeURIComponent(window.location.href);
+        const url = encodeURIComponent(document.getElementById("shareUrl").value);
         const twitterUrl = `https://twitter.com/intent/tweet?text=${text}&url=${url}`;
         window.open(twitterUrl, '_blank');
     });
