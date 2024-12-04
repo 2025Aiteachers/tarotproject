@@ -385,7 +385,7 @@
     const kakaoShareButton = document.getElementById("kakaoShareButton");
     const twitterShareButton = document.getElementById("twitterShareButton");
     let flipCount = 0;
-    let selectedCards = [];
+    const selectedIndices = []; // 이미 선택된 카드 인덱스를 저장
 
     window.addEventListener('load', () => {
         const urlParams = new URLSearchParams(window.location.search);
@@ -413,9 +413,14 @@
         card.addEventListener("click", () => {
             if (flipCount >= 3 || cardInnerElements[index].classList.contains("flipped")) return;
 
-            const randomIndex = Math.floor(Math.random() * cards.length);
+            let randomIndex;
+            // 중복되지 않은 랜덤 인덱스를 찾을 때까지 반복
+            do {
+                randomIndex = Math.floor(Math.random() * cards.length);
+            } while (selectedIndices.includes(randomIndex));
+
+            selectedIndices.push(randomIndex);
             const selectedCard = cards[randomIndex];
-            selectedCards.push(randomIndex);
 
             cardImages[index].src = selectedCard.image;
             const position = ['past', 'present', 'future'];
@@ -438,13 +443,13 @@
 
     function buildShareUrl() {
         const baseUrl = window.location.origin + window.location.pathname;
-        const shareUrl = `${baseUrl}?cards=${selectedCards.join(',')}`;
+        const shareUrl = `${baseUrl}?cards=${selectedIndices.join(',')}`;
         document.getElementById("shareUrl").value = shareUrl; // URL을 입력 값에 저장
     }
 
     resetButton.addEventListener("click", () => {
         flipCount = 0;
-        selectedCards = [];
+        selectedIndices.length = 0; // 선택된 인덱스 초기화
         cardInnerElements.forEach(el => el.classList.remove("flipped"));
         cardImages.forEach(img => img.src = "");
         cardName.textContent = "";
