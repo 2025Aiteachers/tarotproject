@@ -12,7 +12,7 @@
             margin: 0;
             padding: 0;
             background-color: black;
-            color: white;
+            color: #CCCCCC; /* 회색조의 텍스트 */
         }
 
         h1 {
@@ -33,6 +33,13 @@
             width: 120px;
             height: 180px;
             perspective: 1000px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* 그림자 추가 */
+            transition: box-shadow 0.3s, transform 0.6s; /* 호버 시 전환 효과 통합 */
+        }
+        
+        .card:hover {
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.7); /* 호버 시 그림자 강화 */
+            transform: scale(1.05); /* 약간 확대 */
         }
 
         .card-inner {
@@ -58,13 +65,13 @@
         }
 
         .card-inner.flipped {
-            transform: rotateY(900deg);
+            transform: rotateY(180deg);
         }
 
         .description, #cardName {
             margin-top: 30px;
             font-size: 1.1em;
-            color: white;
+            color: #CCCCCC; /* 일관된 텍스트 색상 */
             max-width: 90%;
             text-align: left;
             margin: 0 auto;
@@ -103,6 +110,7 @@
             border-radius: 5px;
             cursor: pointer;
             max-width: 130px;
+            transition: background-color 0.3s;
         }
 
         .reset-button {
