@@ -210,7 +210,7 @@
             name: "The High Priestess (여교황)",
             image: "https://github.com/hahamanman/taroproject/blob/main/03_the%20high%20priestess.jpg?raw=true",
             descriptions: {
-                past: "깊은 통찰력으로 많은 학생들을 가르쳐 역량이 길러졌습니다.",
+                past: "깊은 통찰력으로 많은 학생들을 가르쳤고, 학습을 심화시켰습니다.",
                 present: "직관에 의존해 더 깊은 배움의 기회를 발견할 시기입니다.",
                 future: "내년에는 감춰진 비밀들을 알게 될 겁니다. 선생님이 내년에 또 과학정보부장을 할 수밖에 없는 이유 같은거요."
             }
@@ -220,7 +220,7 @@
             image: "https://github.com/hahamanman/taroproject/blob/main/03_the%20empress.jpg?raw=true",
             descriptions: {
                 past: "창의적이고 따뜻한 접근법으로 교육 환경을 풍부하게 만들었습니다.",
-                present: "계속 창의성을 발휘해 더 풍성한 교육 기회를 탐색하세요.",
+                present: "창의성을 지속하며 더 풍성한 교육 기회를 탐색하세요.",
                 future: "창의력과 열정으로 수업이 꽃 피울 겁니다. 학생들도 깜짝 놀랄 아이디어가 넘칠 거예요!"
             }
         },
@@ -238,7 +238,7 @@
             image: "https://github.com/hahamanman/taroproject/blob/main/06_the%20lovers.jpg?raw=true",
             descriptions: {
                 past: "협력과 이해로 강력한 교육적 기반을 구축했습니다.",
-                present: "선생님의 교육 철학을 강화할 새로운 조화를 찾을 때입니다.",
+                present: "교육 철학을 강화할 새로운 조화를 찾을 때입니다.",
                 future: "2025년엔 협력이 관건! 동료들과의 팀워크와 네트워크가 선생님을 더 성장하게 만들 겁니다."
             }
         },
@@ -265,7 +265,7 @@
             image: "https://github.com/hahamanman/taroproject/blob/main/10_the%20hermit.jpg?raw=true",
             descriptions: {
                 past: "내적 성찰을 통해 자신의 교육 철학을 정립했습니다.",
-                present: "새로운 탐구를 위한 내적 동기를 찾을 시기입니다.",
+                present: "새로운 탐구를 위한 내적 자원을 찾을 시기입니다.",
                 future: "혼자만의 시간을 만끽하세요! 내년엔 AI가 당신의 조용한 연구 파트너가 되어줄 겁니다!"
             }
         },
@@ -311,7 +311,7 @@
             descriptions: {
                 past: "균형과 절제로 교육에서 중용을 유지했습니다.",
                 present: "모든 자원을 통합하여 조화롭게 발전하세요.",
-                future: "균형과 조화를 이루는 한 해가 될 겁니다! AI를 업무에 적극적으로 활용해 더 여유로운 시간을 기대하세요."
+                future: "균형과 조화를 이루는 한 해가 될 겁니다! AI가 당신의 업무와 휴식을 완벽하게 조율해 줄 테니, 올해는 더 여유로운 시간을 기대하세요."
             }
         },
         {
@@ -329,7 +329,7 @@
             descriptions: {
                 past: "예기치 못한 변화와 충격 속에서 새로운 통찰을 얻었습니다.",
                 present: "위기 속에서 배우고 의미 있는 변화를 모색해야 합니다.",
-                future: "뜻밖의 변화가 찾아올 예정입니다! 하지만 동료들과 함께라면 새로운 길을 만들어갈 수 있을 거예요."
+                future: "뜻밖의 변화가 찾아올 예정입니다! 하지만 동료들과 함께라면 새로운 길을 만들어갈 수 있을 거예요. 함께라서 든든하죠?"
             }
         },
         {
@@ -379,8 +379,6 @@
         }
     ];
 
-    const cardElements = document.querySelectorAll('.card');
-    const cardInnerElements = document.querySelectorAll('.card-inner');
     const cardImages = [
         document.getElementById("cardImage1"),
         document.getElementById("cardImage2"),
@@ -392,37 +390,83 @@
     const kakaoShareButton = document.getElementById("kakaoShareButton");
     const twitterShareButton = document.getElementById("twitterShareButton");
     let flipCount = 0;
-    let selectedCards = []; // 선택된 카드들을 추적
-    
-    cardElements.forEach((card, index) => {
-        card.addEventListener("click", () => {
-            if (flipCount >= 3 || cardInnerElements[index].classList.contains("flipped")) return;
+    let selectedCards = [];
 
-            const randomIndex = Math.floor(Math.random() * cards.length);
-            const selectedCard = cards[randomIndex];
-            selectedCards.push(randomIndex); // 선택된 카드의 인덱스 저장
+    function getRandomCard() {
+        const randomIndex = Math.floor(Math.random() * cards.length);
+        return cards[randomIndex];
+    }
+
+    function drawCards() {
+        const positions = ['past', 'present', 'future'];
+        const positionText = ['과거', '현재', '미래'];
+
+        cardName.innerHTML = '';
+        cardDescription.innerHTML = '';
+
+        positions.forEach((position, index) => {
+            const selectedCard = getRandomCard();
+            selectedCards[index] = cards.indexOf(selectedCard);
 
             cardImages[index].src = selectedCard.image;
-            const position = ['past', 'present', 'future'];
+            const descriptionClass = position === 'future' ? 'future-text' : '';
+
+            cardName.innerHTML += `<br/><strong class="gold-text">${positionText[index]}:</strong> <span class="arcana-name">${selectedCard.name}</span>`;
+            cardDescription.innerHTML += `<span class="${descriptionClass}">${selectedCard.descriptions[position]}</span><br/>`;
+
+            document.querySelector(`#cardImage${index+1}`).parentElement.parentElement.classList.add("flipped");
+        });
+
+        document.getElementById("buttonContainer").classList.remove("hidden");
+        buildShareUrl();
+    }
+
+    function buildShareUrl() {
+        const baseUrl = window.location.origin + window.location.pathname;
+        const shareUrl = `${baseUrl}?cards=${selectedCards.join(',')}`;
+        const shareInput = document.getElementById("shareUrl");
+        shareInput.style.visibility = "visible";
+        shareInput.value = shareUrl;
+    }
+
+    function loadCardsFromUrl() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const cardsParam = urlParams.get('cards');
+
+        if (cardsParam) {
+            const cardIndices = cardsParam.split(',').map(Number);
+            const positions = ['past', 'present', 'future'];
             const positionText = ['과거', '현재', '미래'];
 
-            const descriptionClass = position[flipCount] === 'future' ? 'future-text' : '';
+            cardName.innerHTML = '';
+            cardDescription.innerHTML = '';
 
-            cardName.innerHTML += `<br/><strong class="gold-text">${positionText[flipCount]}:</strong> <span class="arcana-name">${selectedCard.name}</span>`;
-            cardDescription.innerHTML += `<span class="${descriptionClass}">${selectedCard.descriptions[position[flipCount]]}</span><br/>`;
+            cardIndices.forEach((index, flipCount) => {
+                if (index != null && index >= 0 && index < cards.length) {
+                    const selectedCard = cards[index];
+                    cardImages[flipCount].src = selectedCard.image;
+                    const descriptionClass = positions[flipCount] === 'future' ? 'future-text' : '';
 
-            cardInnerElements[index].classList.add("flipped");
-            flipCount++;
+                    cardName.innerHTML += `<br/><strong class="gold-text">${positionText[flipCount]}:</strong> <span class="arcana-name">${selectedCard.name}</span>`;
+                    cardDescription.innerHTML += `<span class="${descriptionClass}">${selectedCard.descriptions[positions[flipCount]]}</span><br/>`;
 
-            if (flipCount === 3) {
+                    document.querySelector(`#cardImage${flipCount+1}`).parentElement.parentElement.classList.add("flipped");
+                }
                 document.getElementById("buttonContainer").classList.remove("hidden");
-            }
+            });
+        }
+    }
+
+    window.addEventListener('load', () => {
+        document.querySelectorAll('.card').forEach(card => {
+            card.addEventListener("click", drawCards);
         });
+        loadCardsFromUrl();
     });
 
     resetButton.addEventListener("click", () => {
         flipCount = 0;
-        selectedCards = []; // 초기화 시 선택된 카드도 초기화
+        selectedCards = [];
         cardInnerElements.forEach(el => el.classList.remove("flipped"));
         cardImages.forEach(img => img.src = "");
         cardName.textContent = "";
@@ -431,6 +475,7 @@
     });
 
     kakaoShareButton.addEventListener('click', function () {
+        const shareUrl = document.getElementById("shareUrl").value;
         Kakao.Link.sendDefault({
             objectType: 'feed',
             content: {
@@ -438,8 +483,8 @@
                 description: '터치해서 당신의 타로카드 결과를 확인해보세요!',
                 imageUrl: cardImages[0].src,
                 link: {
-                    mobileWebUrl: window.location.href,
-                    webUrl: window.location.href
+                    mobileWebUrl: shareUrl,
+                    webUrl: shareUrl
                 }
             }
         });
@@ -447,7 +492,7 @@
 
     twitterShareButton.addEventListener('click', function () {
         const text = encodeURIComponent("2025년 타로카드 신년운세! " + cardDescription.innerText);
-        const url = encodeURIComponent(window.location.href);
+        const url = encodeURIComponent(document.getElementById("shareUrl").value);
         const twitterUrl = `https://twitter.com/intent/tweet?text=${text}&url=${url}`;
         window.open(twitterUrl, '_blank');
     });
