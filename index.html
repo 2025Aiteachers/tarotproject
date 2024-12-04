@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,13 +13,13 @@
             background-color: black;
             color: #CCCCCC;
         }
-        
+
         h1 {
             font-size: 2em;
             margin-top: 30px;
             color: gold;
         }
-        
+
         .cards {
             display: flex;
             justify-content: center;
@@ -30,12 +29,7 @@
             margin: 20px auto;
             max-width: 500px;
         }
-        
-        .card-container {
-            display: flex;
-            justify-content: center;
-        }
-        
+
         .card {
             width: 120px;
             height: 180px;
@@ -43,12 +37,12 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
             transition: box-shadow 0.3s, transform 0.6s;
         }
-        
+
         .card:hover {
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.7);
             transform: scale(1.20);
         }
-        
+
         .card-inner {
             position: relative;
             width: 100%;
@@ -56,7 +50,7 @@
             transform-style: preserve-3d;
             transition: transform 0.6s;
         }
-        
+
         .card-front,
         .card-back {
             position: absolute;
@@ -66,17 +60,16 @@
             height: 100%;
             backface-visibility: hidden;
         }
-        
+
         .card-back {
             transform: rotateY(180deg);
         }
-        
+
         .card-inner.flipped {
-            transform: rotateY(900deg);
+            transform: rotateY(180deg);
         }
-        
-        .description,
-        #cardName {
+
+        .description, #cardName {
             margin-top: 30px;
             font-size: 1.1em;
             color: #CCCCCC;
@@ -85,21 +78,21 @@
             margin: 0 auto;
             padding: 0 10px;
         }
-        
+
         .arcana-name {
             color: lightcoral;
         }
-        
+
         .gold-text {
             color: gold;
         }
-        
+
         .future-text {
             color: lightgreen;
             font-weight: bold;
             font-size: 1.2em;
         }
-        
+
         .button-container {
             margin-top: 20px;
             display: flex;
@@ -107,7 +100,7 @@
             justify-content: center;
             gap: 10px;
         }
-        
+
         .reset-button,
         .share-button {
             padding: 10px 20px;
@@ -117,393 +110,211 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            max-width: 130px;
             transition: background-color 0.3s;
         }
-        
+
         .reset-button {
             white-space: pre-wrap;
         }
-        
+
         .reset-button:hover,
         .share-button:hover {
             background-color: #cca300;
         }
-        
+
         .hidden {
             display: none;
         }
     </style>
     <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
 </head>
-
 <body>
-    <h1>2025년 타로카드 신년운세</h1>
-    <p>세 장의 카드를 차례로 클릭해서<br>당신의 과거, 현재, 미래 운세를 확인하세요!</p>
+<h1>2025년 타로카드 신년운세</h1>
+<p>세 장의 카드를 차례로 클릭해서<br>당신의 과거, 현재, 미래 운세를 확인하세요!</p>
 
-    <div class="card-container">
-        <div class="cards">
-            <div class="card">
-                <div class="card-inner">
-                    <div class="card-front">
-                        <img src="https://github.com/hahamanman/taroproject/blob/main/00_backdesign.jpg?raw=true"
-                            alt="Card Front" style="width: 100%; height: 100%;">
-                    </div>
-                    <div class="card-back">
-                        <img id="cardImage1" src="" alt="Card Back" style="width: 100%; height: 100%;">
-                    </div>
+<div class="card-container">
+    <div class="cards">
+        <div class="card">
+            <div class="card-inner">
+                <div class="card-front">
+                    <img src="https://github.com/hahamanman/taroproject/blob/main/00_backdesign.jpg?raw=true" alt="Card Front" style="width: 100%; height: 100%;">
+                </div>
+                <div class="card-back">
+                    <img id="cardImage1" src="" alt="Card Back" style="width: 100%; height: 100%;">
                 </div>
             </div>
-            <div class="card">
-                <div class="card-inner">
-                    <div class="card-front">
-                        <img src="https://github.com/hahamanman/taroproject/blob/main/00_backdesign.jpg?raw=true"
-                            alt="Card Front" style="width: 100%; height: 100%;">
-                    </div>
-                    <div class="card-back">
-                        <img id="cardImage2" src="" alt="Card Back" style="width: 100%; height: 100%;">
-                    </div>
+        </div>
+        <div class="card">
+            <div class="card-inner">
+                <div class="card-front">
+                    <img src="https://github.com/hahamanman/taroproject/blob/main/00_backdesign.jpg?raw=true" alt="Card Front" style="width: 100%; height: 100%;">
+                </div>
+                <div class="card-back">
+                    <img id="cardImage2" src="" alt="Card Back" style="width: 100%; height: 100%;">
                 </div>
             </div>
-            <div class="card">
-                <div class="card-inner">
-                    <div class="card-front">
-                        <img src="https://github.com/hahamanman/taroproject/blob/main/00_backdesign.jpg?raw=true"
-                            alt="Card Front" style="width: 100%; height: 100%;">
-                    </div>
-                    <div class="card-back">
-                        <img id="cardImage3" src="" alt="Card Back" style="width: 100%; height: 100%;">
-                    </div>
+        </div>
+        <div class="card">
+            <div class="card-inner">
+                <div class="card-front">
+                    <img src="https://github.com/hahamanman/taroproject/blob/main/00_backdesign.jpg?raw=true" alt="Card Front" style="width: 100%; height: 100%;">
+                </div>
+                <div class="card-back">
+                    <img id="cardImage3" src="" alt="Card Back" style="width: 100%; height: 100%;">
                 </div>
             </div>
         </div>
     </div>
+</div>
 
-    <h2 id="cardName"></h2>
-    <p class="description" id="cardDescription"></p>
+<h2 id="cardName"></h2>
+<p class="description" id="cardDescription"></p>
 
-    <div class="button-container hidden" id="buttonContainer">
-        <button class="reset-button" id="resetButton">처음으로<br>돌아가기</button>
-        <button class="share-button" id="kakaoShareButton">카카오톡으로 공유하기</button>
-        <button class="share-button" id="twitterShareButton">트위터로 공유하기</button>
-    </div>
+<div class="button-container hidden" id="buttonContainer">
+    <button class="reset-button" id="resetButton">처음으로<br>돌아가기</button>
+    <button class="share-button" id="kakaoShareButton">카카오톡으로 공유하기</button>
+    <button class="share-button" id="twitterShareButton">트위터로 공유하기</button>
+</div>
 
-    <script>
-        Kakao.init('7a8d42b217b82c4d4b314e8dfd73af08');
+<script>
+    Kakao.init('7a8d42b217b82c4d4b314e8dfd73af08'); // 실제 JavaScript 키로 대체하세요.
 
-        const cards = [
-            {
-                name: "The Fool (광대)",
-                image: "https://github.com/hahamanman/taroproject/blob/main/01_the%20fool.jpg?raw=true",
-                descriptions: {
-                    past: "2024년에는 당신이 새로운 시도를 통해 교육 현장에 변화를 주도했습니다.",
-                    present: "이제는 열린 마음으로 더 나은 기회를 모색하며, 자신을 발전시킬 시기입니다.",
-                    future: "새로운 시작을 두려워하지 마세요! 내년에는 실수조차도 AI가 모두 다 고쳐줄 거에요."
-                }
-            },
-            {
-                name: "The Magician (마법사)",
-                image: "https://github.com/hahamanman/taroproject/blob/main/02_the%20magician.jpg?raw=true",
-                descriptions: {
-                    past: "자신의 능력을 활용하여 교육에서 많은 성과를 이루었습니다.",
-                    present: "지금은 새로운 교육 방안을 모색하며, 창조성을 발휘해야 할 때입니다.",
-                    future: "2025년, 당신은 에듀테크의 마법사! 모든 수업 자료가 마법처럼 준비될 거에요."
-                }
-            },
-            {
-                name: "The High Priestess (여교황)",
-                image: "https://github.com/hahamanman/taroproject/blob/main/03_the%20high%20priestess.jpg?raw=true",
-                descriptions: {
-                    past: "깊은 통찰력으로 많은 학생들을 가르쳤고, 학습을 심화시켰습니다.",
-                    present: "직관에 의존해 더 깊은 배움의 기회를 발견할 시기입니다.",
-                    future: "내년에는 감춰진 비밀들을 알게 될 겁니다. 선생님이 내년에 또 과학정보부장을 할 수밖에 없는 이유 같은거요."
-                }
-            },
-            {
-                name: "The Empress (여황제)",
-                image: "https://github.com/hahamanman/taroproject/blob/main/03_the%20empress.jpg?raw=true",
-                descriptions: {
-                    past: "창의적이고 따뜻한 접근법으로 교육 환경을 풍부하게 만들었습니다.",
-                    present: "창의성을 지속하며 더 풍성한 교육 기회를 탐색하세요.",
-                    future: "창의력과 열정으로 수업이 꽃 피울 겁니다. 학생들도 깜짝 놀랄 아이디어가 넘칠 거예요!"
-                }
-            },
-            {
-                name: "The Emperor (황제)",
-                image: "https://github.com/hahamanman/taroproject/blob/main/04_the%20emperor.jpg?raw=true",
-                descriptions: {
-                    past: "교육 현장의 질서와 안정성을 성공적으로 유지했습니다.",
-                    present: "명확한 계획과 리더십을 통해 더 큰 성장을 이루어야 합니다.",
-                    future: "내년엔 권위가 빛날 거예요. 새로운 학생들도 새로운 업무들도 선생님이 하고자 하는대로 잘 풀릴거에요."
-                }
-            },
-            {
-                name: "The Lovers (연인)",
-                image: "https://github.com/hahamanman/taroproject/blob/main/06_the%20lovers.jpg?raw=true",
-                descriptions: {
-                    past: "협력과 이해로 강력한 교육적 기반을 구축했습니다.",
-                    present: "교육 철학을 강화할 새로운 조화를 찾을 때입니다.",
-                    future: "2025년엔 협력이 관건! 동료들과의 팀워크와 네트워크가 선생님을 더 성장하게 만들 겁니다."
-                }
-            },
-            {
-                name: "The Chariot (전차)",
-                image: "https://github.com/hahamanman/taroproject/blob/main/07_the%20chariot.jpg?raw=true",
-                descriptions: {
-                    past: "의지와 결단력으로 교육적 도전을 극복해냈습니다.",
-                    present: "목표를 실현하기 위한 새로운 발전 방식을 모색해보세요.",
-                    future: "결단력 있게 앞으로 나아가세요! AI와 함께라면 전차보다 더 빠르게 목표에 도달할 거예요."
-                }
-            },
-            {
-                name: "Strength (힘)",
-                image: "https://github.com/hahamanman/taroproject/blob/main/08_strength.jpg?raw=true",
-                descriptions: {
-                    past: "내면의 용기로 교육에서 많은 난관을 이겨냈습니다.",
-                    present: "강한 마음과 자연스러움으로 더 큰 역할을 추구하세요.",
-                    future: "학생들의 인내심 테스트? 문제없어요. 내년엔 더 단단한 내면의 힘으로 훌륭한 선생님으로 성장할거에요."
-                }
-            },
-            {
-                name: "The Hermit (은둔자)",
-                image: "https://github.com/hahamanman/taroproject/blob/main/10_the%20hermit.jpg?raw=true",
-                descriptions: {
-                    past: "내적 성찰을 통해 자신의 교육 철학을 정립했습니다.",
-                    present: "새로운 탐구를 위한 내적 자원을 찾을 시기입니다.",
-                    future: "혼자만의 시간을 만끽하세요! 내년엔 AI가 당신의 조용한 연구 파트너가 되어줄 겁니다!"
-                }
-            },
-            {
-                name: "Wheel of Fortune (운명의 수레바퀴)",
-                image: "https://github.com/hahamanman/taroproject/blob/main/11_wheel%20of%20fortune.jpg?raw=true",
-                descriptions: {
-                    past: "교육적 변화를 경험하며 중요한 교훈을 얻었습니다.",
-                    present: "발전을 위한 기회를 평가하고 준비하는 때입니다.",
-                    future: "행운의 바퀴가 회전합니다! 내년엔 원하는 보직과 원하는 학년을 얻게 될거에요!"
-                }
-            },
-            {
-                name: "Justice (정의)",
-                image: "https://github.com/hahamanman/taroproject/blob/main/24_justice.jpg?raw=true",
-                descriptions: {
-                    past: "공정성과 진실성으로 교육에 큰 영향을 줬습니다.",
-                    present: "균형 잡힌 판단으로 더 나은 미래를 계획하세요.",
-                    future: "공정함이 빛나는 한 해가 될 겁니다! 내년엔 우리 선생님은 늘 공정해요 라는 말을 듣게 될거에요."
-                }
-            },
-            {
-                name: "The Hanged Man (매달린 남자)",
-                image: "https://github.com/hahamanman/taroproject/blob/main/25_the%20hanged%20man.jpg?raw=true",
-                descriptions: {
-                    past: "다양한 관점에서 교육적 조언을 주고받았습니다.",
-                    present: "새로운 시각으로 자신을 발전시킬 방법을 찾아보세요.",
-                    future: "새로운 시각이 열립니다! 뭔가 어려운 일이 생길 때는 참신한 해결책이 다가올 거에요."
-                }
-            },
-            {
-                name: "Death (죽음)",
-                image: "https://github.com/hahamanman/taroproject/blob/main/18_the%20star.jpg?raw=true",
-                descriptions: {
-                    past: "큰 변화와 전환을 겪으면서 새 시작을 준비했습니다.",
-                    present: "오래된 패턴을 종결하고 새로운 출발을 마련할 때입니다.",
-                    future: "오래된 습관은 떠나보내세요! AI가 당신에게 새로운 시작을 선물할 준비가 되어 있습니다."
-                }
-            },
-            {
-                name: "Temperance (절제)",
-                image: "https://github.com/hahamanman/taroproject/blob/main/15_temperance.jpg?raw=true",
-                descriptions: {
-                    past: "균형과 절제로 교육에서 중용을 유지했습니다.",
-                    present: "모든 자원을 통합하여 조화롭게 발전하세요.",
-                    future: "균형과 조화를 이루는 한 해가 될 겁니다! AI가 당신의 업무와 휴식을 완벽하게 조율해 줄 테니, 올해는 더 여유로운 시간을 기대하세요."
-                }
-            },
-            {
-                name: "The Devil (악마)",
-                image: "https://github.com/hahamanman/taroproject/blob/main/16_the%20devil.jpg?raw=true",
-                descriptions: {
-                    past: "제한 속에서 현실을 직시하며 도전을 극복했습니다.",
-                    present: "자유롭게 더 큰 가능성을 추구해야 할 시기입니다.",
-                    future: "내년엔 유혹이 강할 겁니다. 하지만 걱정 마세요, 우리가 당신의 현명한 선택에 함께할 거예요!"
-                }
-            },
-            {
-                name: "The Tower (탑)",
-                image: "https://github.com/hahamanman/taroproject/blob/main/17_the%20tower.jpg?raw=true",
-                descriptions: {
-                    past: "예기치 못한 변화와 충격 속에서 새로운 통찰을 얻었습니다.",
-                    present: "위기 속에서 배우고 의미 있는 변화를 모색해야 합니다.",
-                    future: "뜻밖의 변화가 찾아올 예정입니다! 하지만 동료들과 함께라면 새로운 길을 만들어갈 수 있을 거예요. 함께라서 든든하죠?"
-                }
-            },
-            {
-                name: "The Star (별)",
-                image: "https://github.com/hahamanman/taroproject/blob/main/18_the%20star.jpg?raw=true",
-                descriptions: {
-                    past: "희망찬 아이디어로 교실과 교육을 혁신했습니다.",
-                    present: "영감을 통해 새로운 교육적 기회를 창출하세요.",
-                    future: "희망과 영감의 해가 될 겁니다. 당신의 가장 빛나는 아이디어가 현실이 될 거예요."
-                }
-            },
-            {
-                name: "The Moon (달)",
-                image: "https://github.com/hahamanman/taroproject/blob/main/19_the%20moon.jpg?raw=true",
-                descriptions: {
-                    past: "불확실한 상황에서도 자신의 길을 찾았습니다.",
-                    present: "직관을 활용해 새로운 방향을 탐색해 보세요.",
-                    future: "모호함 속에서 빛나는 답을 찾게 될 겁니다. 주변사람들이 함께 길을 밝혀줄 테니까요!"
-                }
-            },
-            {
-                name: "The Sun (태양)",
-                image: "https://github.com/hahamanman/taroproject/blob/main/20_the%20sun.jpg?raw=true",
-                descriptions: {
-                    past: "밝고 성공적인 시기에 긍정적인 에너지를 경험했습니다.",
-                    present: "긍정적인 비전을 유지하며 자신을 발전시키세요.",
-                    future: "밝고 긍정적인 에너지가 넘칩니다! 내년에도 햇살같은 기운이 찾아올 거에요."
-                }
-            },
-            {
-                name: "Judgment (심판)",
-                image: "https://github.com/hahamanman/taroproject/blob/main/21_judgment.jpg?raw=true",
-                descriptions: {
-                    past: "과거의 결정을 반성하며 성장을 위한 기회를 발견했습니다.",
-                    present: "지혜로운 선택을 통해 새로운 시작을 계획할 때입니다.",
-                    future: "평가는 가볍게, 성장에는 진지하게! 내년에도 함께 더 나은 미래를 설계해보세요."
-                }
-            },
-            {
-                name: "The World (세계)",
-                image: "https://github.com/hahamanman/taroproject/blob/main/22_the%20world.jpg?raw=true",
-                descriptions: {
-                    past: "다양한 목표를 완수하며 자신과 교육에 만족을 느꼈습니다.",
-                    present: "모든 기회를 통합하여 더 큰 성장을 추구하세요.",
-                    future: "모든 것이 연결됩니다! 내년엔 당신의 수업이 글로벌 스탠다드가 될 겁니다."
-                }
+    const cards = [
+        { 
+            name: "The Fool (광대)", 
+            image: "https://github.com/hahamanman/taroproject/blob/main/01_the%20fool.jpg?raw=true", 
+            descriptions: {
+                past: "새로운 모험을 통해 큰 도약을 준비하세요.",
+                present: "자신의 가능성을 믿고 나아가세요.",
+                future: "무엇이든 가능하다는 믿음이 기적을 이룰 것입니다."
             }
-        ];
-
-        const cardElements = document.querySelectorAll('.card');
-        const cardInnerElements = document.querySelectorAll('.card-inner');
-        const cardImages = [
-            document.getElementById("cardImage1"),
-            document.getElementById("cardImage2"),
-            document.getElementById("cardImage3")
-        ];
-        const cardName = document.getElementById("cardName");
-        const cardDescription = document.getElementById("cardDescription");
-        const resetButton = document.getElementById("resetButton");
-        const kakaoShareButton = document.getElementById("kakaoShareButton");
-        const twitterShareButton = document.getElementById("twitterShareButton");
-        let flipCount = 0;
-        let selectedCards = [];
-
-        function getRandomCard() {
-            const randomIndex = Math.floor(Math.random() * cards.length);
-            return cards[randomIndex];
+        },
+        {
+            name: "The Magician (마법사)",
+            image: "https://github.com/hahamanman/taroproject/blob/main/02_the%20magician.jpg?raw=true",
+            descriptions: { 
+                past: "재능을 발휘해 많은 성취를 이루었습니다.",
+                present: "당신의 마법 같은 능력을 발휘할 시기입니다.",
+                future: "2025년, 당신의 에너지가 세상을 변화시킬 것입니다."
+            }
+        },
+        {
+            name: "The High Priestess (여교황)",
+            image: "https://github.com/hahamanman/taroproject/blob/main/03_the%20high%20priestess.jpg?raw=true",
+            descriptions: {
+                past: "깊은 통찰력으로 많은 지혜를 누적했습니다.",
+                present: "직관력에 의존해 새로운 길을 찾을 때입니다.",
+                future: "내년에는 숨겨진 잠재력을 깨닫게 될 것입니다."
+            }
         }
+        // 나머지 카드 데이터 여기에 추가
+    ];
 
-        function drawCards() {
-            const positions = ['past', 'present', 'future'];
+    const cardElements = document.querySelectorAll('.card');
+    const cardInnerElements = document.querySelectorAll('.card-inner');
+    const cardImages = [
+        document.getElementById("cardImage1"),
+        document.getElementById("cardImage2"),
+        document.getElementById("cardImage3")
+    ];
+    const cardName = document.getElementById("cardName");
+    const cardDescription = document.getElementById("cardDescription");
+    const resetButton = document.getElementById("resetButton");
+    const kakaoShareButton = document.getElementById("kakaoShareButton");
+    const twitterShareButton = document.getElementById("twitterShareButton");
+    let flipCount = 0;
+    let selectedCards = [];
+
+    window.addEventListener('load', () => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const cardsParam = urlParams.get('cards');
+
+        if (cardsParam) {
+            const cardIndices = cardsParam.split(',').map(Number);
+            cardIndices.forEach((index, i) => {
+                if (index != null && index >= 0 && index < cards.length) {
+                    const cardInner = cardInnerElements[i];
+                    const cardImage = cardImages[i];
+                    cardImage.src = cards[index].image;
+                    const descriptionClass = i === 2 ? 'future-text' : '';
+                    cardName.innerHTML += `<br/><strong class="gold-text">${['과거', '현재', '미래'][i]}:</strong> <span class="arcana-name">${cards[index].name}</span>`;
+                    cardDescription.innerHTML += `<span class="${descriptionClass}">${cards[index].descriptions[['past', 'present', 'future'][i]]}</span><br/>`;
+                    cardInner.classList.add("flipped");
+                }
+            });
+            document.getElementById("buttonContainer").classList.remove("hidden");
+            flipCount = 3;
+        }
+    });
+
+    cardElements.forEach((card, index) => {
+        card.addEventListener("click", () => {
+            if (flipCount >= 3 || cardInnerElements[index].classList.contains("flipped")) return;
+
+            const randomIndex = Math.floor(Math.random() * cards.length);
+            const selectedCard = cards[randomIndex];
+            selectedCards.push(randomIndex);
+
+            cardImages[index].src = selectedCard.image;
+            const position = ['past', 'present', 'future'];
             const positionText = ['과거', '현재', '미래'];
 
-            cardName.innerHTML = '';
-            cardDescription.innerHTML = '';
+            const descriptionClass = position[flipCount] === 'future' ? 'future-text' : '';
 
-            positions.forEach((position, index) => {
-                const selectedCard = getRandomCard();
-                selectedCards[index] = cards.indexOf(selectedCard);
+            cardName.innerHTML += `<br/><strong class="gold-text">${positionText[flipCount]}:</strong> <span class="arcana-name">${selectedCard.name}</span>`;
+            cardDescription.innerHTML += `<span class="${descriptionClass}">${selectedCard.descriptions[position[flipCount]]}</span><br/>`;
 
-                cardImages[index].src = selectedCard.image;
-                const descriptionClass = position === 'future' ? 'future-text' : '';
+            cardInnerElements[index].classList.add("flipped");
+            flipCount++;
 
-                cardName.innerHTML += `<br/><strong class="gold-text">${positionText[index]}:</strong> <span class="arcana-name">${selectedCard.name}</span>`;
-                cardDescription.innerHTML += `<span class="${descriptionClass}">${selectedCard.descriptions[position]}</span><br/>`;
-
-                document.querySelector(`#cardImage${index + 1}`).parentElement.parentElement.classList.add("flipped");
-            });
-
-            document.getElementById("buttonContainer").classList.remove("hidden");
-            buildShareUrl();
-        }
-
-        function buildShareUrl() {
-            const baseUrl = window.location.origin + window.location.pathname;
-            const shareUrl = `${baseUrl}?cards=${selectedCards.join(',')}`;
-            const shareInput = document.getElementById("shareUrl");
-            shareInput.style.visibility = "visible";
-            shareInput.value = shareUrl;
-        }
-
-        function loadCardsFromUrl() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const cardsParam = urlParams.get('cards');
-
-            if (cardsParam) {
-                const cardIndices = cardsParam.split(',').map(Number);
-                const positions = ['past', 'present', 'future'];
-                const positionText = ['과거', '현재', '미래'];
-
-                cardName.innerHTML = '';
-                cardDescription.innerHTML = '';
-
-                cardIndices.forEach((index, flipCount) => {
-                    if (index != null && index >= 0 && index < cards.length) {
-                        const selectedCard = cards[index];
-                        cardImages[flipCount].src = selectedCard.image;
-                        const descriptionClass = positions[flipCount] === 'future' ? 'future-text' : '';
-
-                        cardName.innerHTML += `<br/><strong class="gold-text">${positionText[flipCount]}:</strong> <span class="arcana-name">${selectedCard.name}</span>`;
-                        cardDescription.innerHTML += `<span class="${descriptionClass}">${selectedCard.descriptions[positions[flipCount]]}</span><br/>`;
-
-                        document.querySelector(`#cardImage${flipCount + 1}`).parentElement.parentElement.classList.add("flipped");
-                    }
-                    document.getElementById("buttonContainer").classList.remove("hidden");
-                });
+            if (flipCount === 3) {
+                document.getElementById("buttonContainer").classList.remove("hidden");
+                buildShareUrl();
             }
-        }
-
-        window.addEventListener('load', () => {
-            document.querySelectorAll('.card').forEach(card => {
-                card.addEventListener("click", drawCards);
-            });
-            loadCardsFromUrl();
         });
+    });
 
-        resetButton.addEventListener("click", () => {
-            flipCount = 0;
-            selectedCards = [];
-            cardInnerElements.forEach(el => el.classList.remove("flipped"));
-            cardImages.forEach(img => img.src = "");
-            cardName.textContent = "";
-            cardDescription.textContent = "";
-            document.getElementById("buttonContainer").classList.add("hidden");
-        });
+    function buildShareUrl() {
+        const baseUrl = window.location.origin + window.location.pathname;
+        const shareUrl = `${baseUrl}?cards=${selectedCards.join(',')}`;
+        document.getElementById("shareUrl").value = shareUrl;
+    }
 
-        kakaoShareButton.addEventListener('click', function () {
-            const shareUrl = document.getElementById("shareUrl").value;
-            Kakao.Link.sendDefault({
-                objectType: 'feed',
-                content: {
-                    title: '2025년 타로카드 신년운세 결과를 확인해보세요!',
-                    description: '터치해서 당신의 타로카드 결과를 확인해보세요!',
-                    imageUrl: cardImages[0].src,
-                    link: {
-                        mobileWebUrl: shareUrl,
-                        webUrl: shareUrl
-                    }
+    resetButton.addEventListener("click", () => {
+        flipCount = 0;
+        selectedCards = [];
+        cardInnerElements.forEach(el => el.classList.remove("flipped"));
+        cardImages.forEach(img => img.src = "");
+        cardName.textContent = "";
+        cardDescription.textContent = "";
+        document.getElementById("buttonContainer").classList.add("hidden");
+    });
+
+    kakaoShareButton.addEventListener('click', function () {
+        Kakao.Link.sendDefault({
+            objectType: 'feed',
+            content: {
+                title: '2025년 타로카드 신년운세 결과를 확인해보세요!',
+                description: '터치해서 당신의 타로카드 결과를 확인해보세요!',
+                imageUrl: cardImages[0].src,
+                link: {
+                    mobileWebUrl: document.getElementById("shareUrl").value,
+                    webUrl: document.getElementById("shareUrl").value
                 }
-            });
+            }
         });
+    });
 
-        twitterShareButton.addEventListener('click', function () {
-            const text = encodeURIComponent("2025년 타로카드 신년운세! " + cardDescription.innerText);
-            const url = encodeURIComponent(document.getElementById("shareUrl").value);
-            const twitterUrl = `https://twitter.com/intent/tweet?text=${text}&url=${url}`;
-            window.open(twitterUrl, '_blank');
-        });
+    twitterShareButton.addEventListener('click', function () {
+        const text = encodeURIComponent("2025년 타로카드 신년운세! " + cardDescription.innerText);
+        const url = encodeURIComponent(document.getElementById("shareUrl").value);
+        const twitterUrl = `https://twitter.com/intent/tweet?text=${text}&url=${url}`;
+        window.open(twitterUrl, '_blank');
+    });
 
-    </script>
-    <input id="shareUrl" type="text" style="visibility:hidden;" />
+</script>
+<!-- 공유할 URL 저장용 숨김 요소 -->
+<input id="shareUrl" type="text" style="visibility:hidden;" />
 </body>
-
 </html>
