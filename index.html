@@ -12,7 +12,7 @@
             margin: 0;
             padding: 0;
             background-color: black;
-            color: #CCCCCC; /* 회색조의 텍스트 */
+            color: #CCCCCC; /* 기본 회색조의 텍스트 */
         }
 
         h1 {
@@ -27,19 +27,22 @@
             flex-wrap: wrap;
             margin-top: 20px;
             gap: 10px;
+            background-color: #2c2c2c; /* 다크블루/밝은 회색 배경 */
+            padding: 20px;
+            border-radius: 10px;
         }
 
         .card {
             width: 120px;
             height: 180px;
             perspective: 1000px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* 그림자 추가 */
-            transition: box-shadow 0.3s, transform 0.6s; /* 호버 시 전환 효과 통합 */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            transition: box-shadow 0.3s, transform 0.6s;
         }
         
         .card:hover {
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.7); /* 호버 시 그림자 강화 */
-            transform: scale(1.05); /* 약간 확대 */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.7);
+            transform: scale(1.05);
         }
 
         .card-inner {
@@ -65,13 +68,14 @@
         }
 
         .card-inner.flipped {
-            transform: rotateY(900deg);
+            transform: rotateY(180deg);
         }
 
         .description, #cardName {
             margin-top: 30px;
             font-size: 1.1em;
-            color: #CCCCCC; /* 일관된 텍스트 색상 */
+            line-height: 1.5; /* 행 간격 조정 */
+            color: #CCCCCC;
             max-width: 90%;
             text-align: left;
             margin: 0 auto;
@@ -97,20 +101,21 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 10px;
+            gap: 15px; /* 버튼 간격 */
         }
 
         .reset-button,
         .share-button {
-            padding: 10px 20px;
+            padding: 10px 30px; /* 크기 넓게 조정 */
             font-size: 1em;
             background-color: #ffd700;
             color: black;
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            max-width: 130px;
             transition: background-color 0.3s;
+            display: flex;
+            align-items: center;
         }
 
         .reset-button {
@@ -122,11 +127,17 @@
             background-color: #cca300;
         }
 
+        .share-button i {
+            margin-right: 8px; /* 아이콘과 텍스트 간격 */
+        }
+
         .hidden {
             display: none;
         }
     </style>
     <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
+    <!-- Font Awesome 추가 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 
 <body>
@@ -171,8 +182,8 @@
 
 <div class="button-container hidden" id="buttonContainer">
     <button class="reset-button" id="resetButton">처음으로<br>돌아가기</button>
-    <button class="share-button" id="kakaoShareButton">카카오톡으로 공유하기</button>
-    <button class="share-button" id="twitterShareButton">트위터로 공유하기</button>
+    <button class="share-button" id="kakaoShareButton"><i class="fab fa-kakao"></i>카카오톡으로 공유하기</button>
+    <button class="share-button" id="twitterShareButton"><i class="fab fa-twitter"></i>트위터로 공유하기</button>
 </div>
 
 <script>
@@ -472,6 +483,7 @@
     });
 
 </script>
+
 <input id="shareUrl" type="text" style="visibility:hidden;" />
 </body>
 </html>
